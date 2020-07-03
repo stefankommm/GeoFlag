@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator'); //todo
 const Flag = require('../../models/Flags');
 
 // @route POST api/flags
-// @desc  Create a flag
+// @desc  Create a flag and initialize it
 // @acess Public
 router.post('/', async (req, res) => {
 	try {

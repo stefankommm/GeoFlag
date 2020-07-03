@@ -28,17 +28,17 @@ const FlagSchema = new Schema({
 	},
 	locations: [
 		{
-			date: {
-				type: Date,
-				default: Date.now,
+			user: {
+				type: String,
+				required: true,
 			},
 			location: {
 				type: String,
 				required: true,
 			},
-			user: {
-				type: String,
-				required: true,
+			date: {
+				type: Date,
+				default: Date.now,
 			},
 		},
 	],
