@@ -4,6 +4,8 @@ const { check, validationResult } = require('express-validator'); //todo
 
 const Flag = require('../../models/Flags');
 
+//TODO: Pridaj validator na POST
+
 // @route POST api/flags
 // @desc  Create a flag and initialize it
 // @acess Public
