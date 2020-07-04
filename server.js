@@ -16,7 +16,7 @@ app.get('/', (req, res) => res.send('API bezi'));
 //app.use('/api/profile', require('./routes/api/profile'));
 //app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/flags', require('./routes/api/flags'));
-app.use('/api/flagtrace', require('./routes/api/flagtrace'));
+//app.use('/api/flagtrace', require('./routes/api/flagtrace'));
 
 const PORT = process.env.PORT || 5000;
 

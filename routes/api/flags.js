@@ -12,12 +12,12 @@ const Flag = require('../../models/Flags');
 router.post('/', async (req, res) => {
 	try {
 		const newFlag = new Flag({
-			id: req.body.id, //8char
+			identifier: req.body.identifier, //8char
 			text: req.body.text, //130char
-			name: req.name, //25char
+			name: req.body.name, //25char
 			user: req.body.user, //20char
-			curloc: req.body.location, //koordinaty
-			dateofcreation: req.body.date, //date
+			curloc: req.body.curloc, //koordinaty
+			dateofcreation: req.body.dateofcreation, //date
 		});
 
 		const flag = await newFlag.save();
@@ -47,6 +47,7 @@ router.get('/', async (req, res) => {
 // @acess Private
 router.get('/:id', async (req, res) => {
 	try {
+		console.log(req.params);
 		const flag = await Flag.findById(req.params.id);
 		res.json(flag);
 		if (!flag) {
