@@ -11,9 +11,10 @@ export default function App() {
 	const url = 'http://localhost:5000/api/flags';
 	const { data, error } = useSwr(url, { fetcher });
 	const flags = data ? data : [];
+	console.log(data);
 
 	return (
-		<Map center={[45.420422, -75.692429]} zoom={12}>
+		<Map center={[48.987427, 19.090228]} zoom={7}>
 			<TileLayer
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -22,7 +23,7 @@ export default function App() {
 			{flags.map((flag) => (
 				<Marker
 					key={flag._id}
-					position={[flag.curloc[1], flag.curloc[0]]}
+					position={[flag.curloc.split(', ')[0], flag.curloc.split(', ')[1]]}
 					onclick={() => {
 						setActiveFlag(flag);
 					}}
@@ -31,7 +32,10 @@ export default function App() {
 
 			{activeFlag && (
 				<Popup
-					position={[activeFlag.curloc[1], activeFlag.curloc[0]]}
+					position={[
+						activeFlag.curloc.split(', ')[0],
+						activeFlag.curloc.split(', ')[1],
+					]}
 					onClose={() => {
 						setActiveFlag(null);
 					}}
@@ -39,8 +43,8 @@ export default function App() {
 					<div>
 						<h2>{activeFlag.name}</h2>
 						<p>{activeFlag.name}</p>
+						<p>MADE BY: {activeFlag.user}</p>
 					</div>
-					🇸🇰🇸🇰🇸🇰
 				</Popup>
 			)}
 		</Map>
