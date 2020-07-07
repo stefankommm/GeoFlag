@@ -3,15 +3,23 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import useSwr from 'swr';
 import './app.css';
+import Axios from 'axios';
 
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 export default function App() {
 	const [activeFlag, setActiveFlag] = React.useState(null);
+	const [fetchedFlags, setFetchedFlags] = React.useState([]);
+
 	const url = 'http://localhost:5000/api/flags';
-	const { data, error } = useSwr(url, { fetcher });
-	const flags = data ? data : [];
-	console.log(data);
+	//const { data, error } = useSwr(url, { fetcher });
+	//const flags = data ? data : [];
+
+	useEffect(async () => {
+		const res = await Axios('http://localhost:5000/api/flags');
+		console.log(res);
+		setFetchedFlags(res.data);
+	}, []);
 
 	return (
 		<Map center={[48.987427, 19.090228]} zoom={7}>
@@ -20,7 +28,7 @@ export default function App() {
 				attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			/>
 
-			{flags.map((flag) => (
+			{fetchedFlags.map((flag) => (
 				<Marker
 					key={flag._id}
 					position={[flag.curloc.split(', ')[0], flag.curloc.split(', ')[1]]}
