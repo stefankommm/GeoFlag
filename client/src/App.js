@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import { Icon } from 'leaflet';
-import useSwr from 'swr';
 import './app.css';
 import Axios from 'axios';
 
