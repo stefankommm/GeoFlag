@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import Axios from 'axios';
+import React, { Fragment, useEffect } from 'react';
 import './leaflet.css';
 import FlagMap from './../../client/src/Components/FlagMap';
-import TopBar from './Components/TopBar';
+import Drawer from './Components/Drawer';
+import AboutUs from './Components/AboutUs';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function App() {
 	return (
 		<div>
-			<TopBar />
-			<FlagMap></FlagMap>
+			<Router>
+				<Fragment>
+					<Drawer>
+						<Switch>
+							<Route exact path='/' component={FlagMap}></Route>
+							<Route path='/map' component={FlagMap}></Route>
+							<Route exact path='/addMap' component={FlagMap}></Route>
+							<Route path='/aboutUs' component={AboutUs}></Route>
+						</Switch>
+					</Drawer>
+				</Fragment>
+			</Router>
 		</div>
 	);
 }
