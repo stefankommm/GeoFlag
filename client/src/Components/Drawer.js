@@ -175,12 +175,10 @@ export default function MiniDrawer(props) {
 				<Divider />
 				<List>
 					<ListItem button key='About Us'>
-						<Link to='/aboutUs'>
-							<ListItemIcon>
-								<InfoIcon />
-							</ListItemIcon>
-							<ListItemText primary='About Us' />
-						</Link>
+						<ListItemIcon>
+							<InfoIcon />
+						</ListItemIcon>
+						<ListItemText primary='About Us' />
 					</ListItem>
 				</List>
 			</Drawer>
